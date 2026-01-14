@@ -251,7 +251,8 @@ class SaveWorker(QThread):
         
         try:
             if font_file_used:
-                 page.insert_text(p_phys, text, fontsize=size, color=rgb, rotate=text_rot, fontfile=font_file_used)
+                 # Must provide fontname when using fontfile for correct embedding/resource usage
+                 page.insert_text(p_phys, text, fontsize=size, color=rgb, rotate=text_rot, fontfile=font_file_used, fontname="cjk_custom")
             else:
                  page.insert_text(p_phys, text, fontsize=size, color=rgb, rotate=text_rot, fontname="china-ts")
         except Exception as e:
